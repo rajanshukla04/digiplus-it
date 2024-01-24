@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiPlus IT Technical Assessment</title>
+    <style>
+        h1{
+            color: aqua;
+        }
+        #container {
+            padding: 20px;
+            border: 2px solid red;~
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .td {
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        .add, .delete {
+            margin-top: 10px;
+        }
+        button{
+            border: 2px solid yellow;
+            background-color: green;
+            border-radius:1cm;
+        }
+    </style>
+</head>
+<body>
+    <h1>DigiPlus IT Technical Assessment</h1>
+
+    <div id="container">
+        <div id="root-node" class="td">
+            <span>Root Node</span>
+            <button class="add" onclick="addSingleNode('root-node')">Add Single Node</button>
+            <button class="add" onclick="addChildNode('root-node')">Add Child Node</button>
+            <button class="add" onclick="addParentNode('root-node')">Add Parent Node</button>
+            <button class="delete" onclick="deleteNode('root-node')">Delete Node</button>
+        </div>
+    </div>
+
+    <script>
+        var s=0,c=0,p=0;
+        function addSingleNode(parentNodeId) {
+            s=s+1
+            const parentNode = document.getElementById(parentNodeId);
+            const newNode = document.createElement('div');
+            newNode.className = 'tree-node';
+            newNode.innerHTML = '<span>Single Node </span>'+s;
+            parentNode.appendChild(newNode);
+        }
+
+        function addChildNode(parentNodeId) {
+            c=c+1
+            const parentNode = document.getElementById(parentNodeId);
+            const newNode = document.createElement('div');
+            newNode.className = 'tree-node';
+            newNode.innerHTML = '<span>Child Node</span>'+c;
+            parentNode.appendChild(newNode);
+        }
+
+        function addParentNode(childNodeId) {
+            p=p+1
+            const childNode = document.getElementById(childNodeId);
+            const parentNode = document.createElement('div');
+            parentNode.className = 'tree-node';
+            parentNode.innerHTML = '<span>Parent Node</span>'+p;
+            childNode.parentNode.insertBefore(parentNode, childNode);
+            parentNode.appendChild(childNode);
+        }
+        function deleteNode(nodeId) {
+            const nodeToDelete = document.getElementById(nodeId);
+            nodeToDelete.parentNode.removeChild(nodeToDelete);
+            nodeToDelete.remove(parentNode)
+        }
+    </script>
+</body>
+</html>
